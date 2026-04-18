@@ -32,7 +32,12 @@ export function AuthProvider({ children }) {
   useEffect(() => {
     const savedUser = localStorage.getItem('mockUser');
     if (savedUser) {
-      setCurrentUser(JSON.parse(savedUser));
+      try {
+        setCurrentUser(JSON.parse(savedUser));
+      } catch (e) {
+        console.error('Failed to parse saved user', e);
+        localStorage.removeItem('mockUser');
+      }
     }
     setLoading(false);
   }, []);

@@ -10,5 +10,5 @@ export default defineConfig({
       targets: ['defaults', 'not IE 11']
     })
   ],
-  base: './'
+  base: '/deadline-management/'
 })

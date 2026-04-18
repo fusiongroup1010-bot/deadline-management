@@ -53,7 +53,11 @@ export const EventProvider = ({ children }) => {
     let baseData = fbData;
     
     if (!baseData && fallbackFbStr) {
-        baseData = JSON.parse(fallbackFbStr);
+        try {
+            baseData = JSON.parse(fallbackFbStr);
+        } catch(e) {
+            baseData = [];
+        }
     } else if (!baseData) {
         baseData = [];
     } else {
@@ -61,7 +65,12 @@ export const EventProvider = ({ children }) => {
     }
 
     const localStr = localStorage.getItem('local_changes');
-    const localChanges = localStr ? JSON.parse(localStr) : {};
+    let localChanges = {};
+    if (localStr) {
+        try {
+            localChanges = JSON.parse(localStr);
+        } catch(e) {}
+    }
     
     const dataMap = {};
     baseData.forEach(i => dataMap[i.id] = i);
@@ -105,7 +114,10 @@ export const EventProvider = ({ children }) => {
   const syncPendingChangesToCloud = () => {
     const localStr = localStorage.getItem('local_changes');
     if (!localStr) return;
-    const localChanges = JSON.parse(localStr);
+    let localChanges = {};
+    try {
+        localChanges = JSON.parse(localStr);
+    } catch(e) { return; }
     const keys = Object.keys(localChanges);
     if (keys.length === 0) return;
 
