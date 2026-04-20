@@ -30,7 +30,7 @@ const TaskModal = () => {
     priority: 'medium', status: 'todo',
     dueDate: new Date().toISOString().split('T')[0],
     endDate: new Date().toISOString().split('T')[0],
-    dueTime: '09:00', duration: 1,
+    dueTime: '08:00', duration: 1,
   };
 
   const [form, setForm] = useState(defaultForm);

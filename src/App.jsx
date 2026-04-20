@@ -7,11 +7,12 @@ import CalendarView from './components/CalendarView';
 import TaskBoard from './components/TaskBoard';
 import TaskModal from './components/TaskModal';
 import Login from './components/Login';
+import ErrorBoundary from './components/ErrorBoundary';
 import { EventProvider } from './context/EventContext';
 import { AuthProvider, useAuth } from './context/AuthContext';
 
 function AppContent() {
-  const { currentUser } = useAuth();
+  const { currentUser, loading } = useAuth();
   const [isSidebarOpen, setIsSidebarOpen] = useState(false);
 
   useEffect(() => {
@@ -35,6 +36,34 @@ function AppContent() {
       document.body.style.zoom = appScale === '110%' ? '1.1' : (appScale === '90%' ? '0.9' : '1');
     }
   }, []);
+
+  // Show loading spinner while checking auth state
+  if (loading) {
+    return (
+      <div style={{
+        minHeight: '100vh',
+        display: 'flex',
+        flexDirection: 'column',
+        alignItems: 'center',
+        justifyContent: 'center',
+        background: 'var(--bg-main, #0f0f23)',
+        gap: '16px',
+      }}>
+        <div style={{
+          width: '48px',
+          height: '48px',
+          border: '4px solid rgba(255,255,255,0.1)',
+          borderTop: '4px solid var(--primary-accent, #f97316)',
+          borderRadius: '50%',
+          animation: 'spin 0.8s linear infinite',
+        }} />
+        <p style={{ color: 'rgba(255,255,255,0.5)', fontSize: '14px', fontFamily: 'inherit' }}>
+          Đang tải...
+        </p>
+        <style>{`@keyframes spin { to { transform: rotate(360deg); } }`}</style>
+      </div>
+    );
+  }
 
   if (!currentUser) {
     return (
@@ -68,14 +97,18 @@ function AppContent() {
 
 function App() {
   return (
-    <AuthProvider>
-      <EventProvider>
-        <Router>
-          <AppContent />
-          <TaskModal />
-        </Router>
-      </EventProvider>
-    </AuthProvider>
+    <ErrorBoundary>
+      <AuthProvider>
+        <EventProvider>
+          <Router>
+            <ErrorBoundary>
+              <AppContent />
+              <TaskModal />
+            </ErrorBoundary>
+          </Router>
+        </EventProvider>
+      </AuthProvider>
+    </ErrorBoundary>
   );
 }
 
