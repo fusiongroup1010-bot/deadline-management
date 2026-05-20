@@ -337,16 +337,16 @@ button {
 }
 
 .calendar-sidebar {
-  width: 260px;
-  min-width: 220px;
+  width: 200px;
+  min-width: 160px;
   max-width: 450px;
   resize: horizontal;
   display: flex;
   flex-direction: column;
-  gap: 16px;
+  gap: 12px;
   background: var(--bg-panel);
   border-radius: var(--radius-lg);
-  padding: 16px;
+  padding: 12px;
   box-shadow: var(--shadow-soft);
   overflow: hidden;
   transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1);

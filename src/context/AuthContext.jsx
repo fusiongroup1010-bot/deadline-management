@@ -18,6 +18,7 @@ export const EMPLOYEES = [
   { id: 'MunFD', name: 'Mr Mun', department: 'FD', role: 'admin', pass: 'MunFS123' },
   { id: 'LeeCPO', name: 'Mr Lee', department: 'CPO', role: 'admin', pass: 'LeeFS456' },
   { id: 'vetnam@fusiongroup.vn', name: 'Nam R&D Head', department: 'R&D', role: 'admin', pass: 'tndmltk6211#' },
+  { id: 'MKTHN', name: 'MKT Hanoi', department: 'MKT Hanoi', role: 'admin', pass: 'FS1234' },
   { id: 'Guest', name: 'Guest Mode (View Only)', department: 'Guest', role: 'guest' }
 ];
 

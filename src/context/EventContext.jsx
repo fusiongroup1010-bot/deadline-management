@@ -6,6 +6,7 @@ export const CATEGORY_MAP = {
   qc: { name: 'QC',             color: '#fbcfe8', text: '#d96875', accent: '#ec4899' },
   mm: { name: 'Media Marketing', color: '#bbf7d0', text: '#5fb078', accent: '#22c55e' },
   hy: { name: 'HY Evolution',   color: '#bfdbfe', text: '#5a9bd4', accent: '#3b82f6' },
+  mkthn: { name: 'MKT Hanoi',   color: '#e9d5ff', text: '#7c3aed', accent: '#8b5cf6' },
 };
 
 /* ── Unified initial data (shared by Calendar, Planner, Dashboard) ── */

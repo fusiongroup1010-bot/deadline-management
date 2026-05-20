@@ -272,7 +272,7 @@ const CalendarView = () => {
           onClick={() => setInternalSidebarOpen(!internalSidebarOpen)}
           className="internal-sidebar-toggle"
           style={{
-            position: 'absolute', left: internalSidebarOpen ? '270px' : '0px', top: '10px',
+            position: 'absolute', left: internalSidebarOpen ? '210px' : '10px', top: '10px',
             zIndex: 110, background: 'var(--bg-panel)', border: '1px solid var(--border-light)',
             padding: '5px', borderRadius: '50%', cursor: 'pointer', boxShadow: 'var(--shadow-soft)',
             transition: 'all 0.3s ease', display: 'flex', alignItems: 'center', justifyContent: 'center'
@@ -287,32 +287,32 @@ const CalendarView = () => {
           {!isGuest && (
             <button
               style={{
-                background: 'var(--bg-main)', border: '1px solid var(--border-light)', padding: '10px 20px',
-                borderRadius: '24px', display: 'flex', alignItems: 'center', gap: '8px', fontWeight: '800',
-                fontSize: '15px', color: 'var(--text-primary)', alignSelf: 'flex-start', boxShadow: 'var(--shadow-soft)', cursor: 'pointer'
+                background: 'var(--bg-main)', border: '1px solid var(--border-light)', padding: '8px 16px',
+                borderRadius: '24px', display: 'flex', alignItems: 'center', gap: '6px', fontWeight: '800',
+                fontSize: '14px', color: 'var(--text-primary)', alignSelf: 'flex-start', boxShadow: 'var(--shadow-soft)', cursor: 'pointer'
               }}
               onClick={openAddModal}
             >
-              <Plus size={18} strokeWidth={2.5} /> Create
+              <Plus size={16} strokeWidth={2.5} /> Create
             </button>
           )}
 
-          <div style={{ marginTop: '8px' }}>
+          <div style={{ marginTop: '4px' }}>
             <style>{`
-              .rdp { --rdp-cell-size: 24px; --rdp-accent-color: var(--blue-accent); margin: 0; }
+              .rdp { --rdp-cell-size: 22px; --rdp-accent-color: var(--blue-accent); margin: 0; }
               .rdp-day_selected, .rdp-day_selected:focus-visible, .rdp-day_selected:hover { background-color: var(--blue-accent); color: white; }
-              .rdp-caption_label { font-size: 14px; font-weight: 800; color: var(--text-primary); }
-              .rdp-head_cell { color: var(--text-secondary); font-size: 10px; font-weight: 700; text-transform: uppercase; }
-              .rdp-day { font-size: 11px; font-weight: 600; color: var(--text-primary); border-radius: 6px; }
+              .rdp-caption_label { font-size: 13px; font-weight: 800; color: var(--text-primary); }
+              .rdp-head_cell { color: var(--text-secondary); font-size: 9px; font-weight: 700; text-transform: uppercase; }
+              .rdp-day { font-size: 10px; font-weight: 600; color: var(--text-primary); border-radius: 6px; }
               .rdp-nav_button { color: var(--text-secondary); }
             `}</style>
             <DayPicker mode="single" selected={selectedDate} onSelect={d => d && setSelectedDate(d)} showOutsideDays weekStartsOn={1} />
           </div>
 
           {/* Department filter */}
-          <div style={{ marginTop: '12px' }}>
-            <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: '12px' }}>
-              <h4 style={{ fontSize: '14px', fontWeight: '800', margin: 0, color: 'var(--text-primary)' }}>My Calendars</h4>
+          <div style={{ marginTop: '8px' }}>
+            <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: '8px' }}>
+              <h4 style={{ fontSize: '13px', fontWeight: '800', margin: 0, color: 'var(--text-primary)' }}>My Calendars</h4>
               <button 
                 onClick={() => {
                   const allSelected = CATEGORY_LIST.every(c => activeCategories[c.id]);
@@ -320,15 +320,16 @@ const CalendarView = () => {
                   CATEGORY_LIST.forEach(c => nextState[c.id] = !allSelected);
                   setActiveCategories(nextState);
                 }}
-                style={{ fontSize: '11px', fontWeight: '700', color: 'var(--blue-accent)', background: 'none', border: 'none', cursor: 'pointer', padding: 0 }}
+                style={{ fontSize: '10px', fontWeight: '700', color: 'var(--blue-accent)', background: 'none', border: 'none', cursor: 'pointer', padding: 0 }}
               >
                 {CATEGORY_LIST.length > 0 && CATEGORY_LIST.every(c => activeCategories[c.id]) ? 'Deselect All' : 'Select All'}
               </button>
             </div>
-            <div style={{ display: 'flex', flexDirection: 'column', gap: '6px' }}>
+            <div style={{ display: 'flex', flexDirection: 'column', gap: '4px' }}>
               {CATEGORY_LIST.map(cat => (
                 <label key={cat.id} className="check-item" style={{
-                  cursor: 'pointer', padding: '6px 10px', borderRadius: '10px',
+                  cursor: 'pointer', padding: '4px 8px', borderRadius: '10px',
+                  display: 'flex', alignItems: 'center', gap: '8px',
                   background: activeCategories[cat.id] ? `${cat.accent}18` : 'transparent',
                   border: `1px solid ${activeCategories[cat.id] ? cat.accent + '44' : 'transparent'}`,
                   transition: 'all 0.2s ease', userSelect: 'none',
@@ -336,9 +337,9 @@ const CalendarView = () => {
                   <input
                     type="checkbox" checked={activeCategories[cat.id]}
                     onChange={() => toggleCat(cat.id)}
-                    style={{ accentColor: cat.accent, width: '15px', height: '15px' }}
+                    style={{ accentColor: cat.accent, width: '14px', height: '14px' }}
                   />
-                  <span style={{ fontSize: '13px', fontWeight: '700', color: activeCategories[cat.id] ? 'var(--text-primary)' : 'var(--text-muted)' }}>
+                  <span style={{ fontSize: '12px', fontWeight: '700', color: activeCategories[cat.id] ? 'var(--text-primary)' : 'var(--text-muted)' }}>
                     {cat.name}
                   </span>
                 </label>
